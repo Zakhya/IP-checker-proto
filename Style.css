@@ -1,0 +1,61 @@
+body {
+    background: linear-gradient(270deg,  #7a7a77, #f3eae8);
+    /* background-color: antiquewhite; */
+}
+.flexbox-container {
+    display: flex;
+    justify-content: space-around;
+}
+.flexbox-item1 {
+    background: rgb(110, 184, 110);
+    flex-grow: 1;
+    text-align: center;
+}
+.flexbox-item2 {
+    background: green;
+    flex-grow: 1;
+    text-align: center;
+}
+.flexbox-item3 {
+    background: #006600;
+    flex-grow: 1;
+    text-align: center;
+}
+.ip-checker {
+    text-align: center;
+}
+.your-race {
+    margin-top: 7.5%;
+    background: linear-gradient(270deg,  rgb(58, 63, 10), green, rgb(110, 184, 110));
+    height: 100px;
+    width: 300px;
+    margin-left:auto;
+    margin-right: auto;
+    padding-top: .1px;
+    /* padding-left: 50%;
+    padding-right: 50%; */
+    vertical-align: center;
+    text-align: center;
+}
+.your-surrondings {
+    background: linear-gradient(270deg,  rgb(58, 63, 10), green, rgb(110, 184, 110));
+    /* background-color: rgb(138, 214, 66); */
+    height: 200px;
+    width: 300px;
+    margin-left:auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: center;
+    padding-top: .1px;
+}
+.your-ip-printed {
+    background: linear-gradient(270deg,  rgb(58, 63, 10), green, rgb(110, 184, 110));
+    /* background-color: rgb(138, 214, 66); */
+    height: auto;
+    width: 300px;
+    margin-left:auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: center;
+    /* padding-top: .1px; */
+}

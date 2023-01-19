@@ -28,6 +28,9 @@ document.getElementById('flexbox-item3').addEventListener('pointerleave', functi
 
 
 for (let i = 0; i < 396 ; i++) {
+
+let changed = false;
+this.tileValue = 0;
 let mapTile = document.createElement('span')
 mapTile.setAttribute('class', 'button number')
 index = i.toString()
@@ -35,10 +38,18 @@ mapTile.setAttribute('id', index)
 document.getElementById('buttons').appendChild(mapTile)
 
 mapTile.addEventListener('pointerenter', function  (e) {
-    if (this.style.background !== 'blue'){
+    if (this.style.background === 'white'){
     this.style.background = 'green';}
 })
 mapTile.addEventListener('pointerleave', function  (e) {
     if (this.style.background === 'green') {
     this.style.background = 'white';}})
-    }
+
+mapTile.addEventListener('click', function (e) {
+    // if (this.tileValue === 0) {
+        this.style.background === 'blue'
+    // }
+})
+
+}
+
