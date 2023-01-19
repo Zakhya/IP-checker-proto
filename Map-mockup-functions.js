@@ -26,30 +26,80 @@ document.getElementById('flexbox-item3').addEventListener('pointerleave', functi
     })
 
 
+// let dropDownValue = 'ent'
+// document.getElementById('building-selector').addEventListener('change', function (e) {
+//     dropDownValue = e.target.value
+// })
+let colors = ["blue", "yellow", "orange"];
+let currentColor = 0;
+let gridLength = 396
+let mapTile = []
 
-for (let i = 0; i < 396 ; i++) {
-
-let changed = false;
-this.tileValue = 0;
-let mapTile = document.createElement('span')
-mapTile.setAttribute('class', 'button number')
-index = i.toString()
-mapTile.setAttribute('id', index)
-document.getElementById('buttons').appendChild(mapTile)
-
-mapTile.addEventListener('pointerenter', function  (e) {
-    if (this.style.background === 'white'){
-    this.style.background = 'green';}
-})
-mapTile.addEventListener('pointerleave', function  (e) {
-    if (this.style.background === 'green') {
-    this.style.background = 'white';}})
-
-mapTile.addEventListener('click', function (e) {
-    // if (this.tileValue === 0) {
-        this.style.background === 'blue'
-    // }
-})
-
+for (let i = 0; i < gridLength ; i++) {
+    mapTile[i] = document.createElement('span')
+    mapTile[i].setAttribute('class', 'button number')
+    index = i.toString()
+    mapTile[i].setAttribute('id', index)
+    document.getElementById('buttons').appendChild(mapTile[i])
+    
+    
+}
+for (let i = 0; i < mapTile.length; i++) {
+    mapTile[i].tileValue = 0
+    mapTile[i].addEventListener('pointerenter', function  (e) {
+        if (mapTile[i].tileValue === 0){
+        this.style.background = 'grey'
+        mapTile[i].tileValue = 1;}
+    })
+    mapTile[i].addEventListener('pointerleave', function  (e) {
+        if (mapTile[i].tileValue === 1) {
+        this.style.background = 'white';
+        mapTile[i].tileValue = 0}})
+    
+    mapTile[i].addEventListener('click', function (e) {
+           //change color based on dropdown menu
+           let dropDownValue = document.getElementById('building-selector').value
+          if (dropDownValue === 'ent') {
+            this.style.background = 'green'
+             mapTile[i].tileValue = 2
+          } else {
+            
+          }
+        //    this.style.background = 'blue'
+    })
 }
 
+
+
+
+// var colors = ["blue", "yellow", "orange"];
+// var gridLength = 396;
+
+// // Create the grid items and store them in the mapTile array
+// let tileArray = []
+// class MapTile  {
+//     constructor (currentColor, colors) {
+//     this.currentColor = 0
+//     this.colors = ["white", "blue", "yellow", "orange"]
+// }};
+// for (var i = 0; i < gridLength; i++) {
+//     let mapTile = new MapTile(0, 'white')
+//     mapTile[i] = document.createElement("div");
+//     mapTile[i].setAttribute('class', 'button number')
+//     index = i.toString()
+//     mapTile[i].setAttribute('id', index)
+//     document.getElementById('buttons').appendChild(mapTile[i]);
+//     tileArray.push(mapTile)
+// }
+// console.log(tileArray)
+
+// // Add the click event listener to each grid item
+// for (var i = 0; i < gridLength; i++) {
+//     mapTile[i].addEventListener("click", function() {
+//         this.style.backgroundColor = colors[0];
+//         mapTile[i].currentColor++;
+//         if (currentColor >= colors.length) {
+//             currentColor = 0;
+//         }
+//     });
+// }
