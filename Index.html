@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <header class="flexbox-container" id="flexbox-container">
+        <div class="flexbox-item1" id="flexbox-item1"><h2><a href="./index.html">IP-Checker</a></h2></div>
+        <div class="flexbox-item2" id="flexbox-item2"><h2><a href="./map-mockup.html">Map Mockup</a></h2></div>
+    </header>
+
+    <body><br><div class="your-race">
+        <h3>Your Race</h3>
+        <select id="dropdown">
+            <option value="human">Human</option>
+            <option value="ent">Ent</option>
+            <option value="reaper">Reaper</option>
+            <option value="goblin">Goblin</option>
+            <option value="dwarve">Dwarve</option>
+        </select></div><div class="your-surrondings">
+            <form id="Form">
+        <h3>Your Surrondings</h3>
+        <span>Goblins</span><input type="number" id="goblin" class="numberClass"><br>
+        <span>Ents</span><input type="number" id="ent" class="numberClass"><br>
+        <span>Reapers</span><input type="number" id="reaper" class="numberClass"><br>
+        <span>Humans</span><input type="number" id="human" class="numberClass"><br>
+        <span>Dwarves</span><input type="number" id="dwarve" class="numberClass"><br>
+        </form>
+    </div><div id="ipPrinter"></div></body>
+    <link rel="stylesheet" href="style.css"></link>
+    <script src="ip-functions.js"></script>
+</html>
