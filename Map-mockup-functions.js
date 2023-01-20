@@ -62,8 +62,23 @@ for (let i = 0; i < mapTile.length; i++) {
           if (dropDownValue === 'ent') {
             this.style.background = 'green'
              mapTile[i].tileValue = 2
-          } else {
-            
+             this.textContent = 'Ent'
+            } else if (dropDownValue === 'reaper'){ 
+                this.style.background = '#404040'
+                mapTile[i].tileValue = 3
+                this.textContent = 'Reaper'
+            } else if (dropDownValue === 'dwarve') {
+                this.style.background = '#99bbff'
+                mapTile[i].tileValue = 4
+                this.textContent = 'Dwarve'
+            } else if (dropDownValue === 'human') {
+                this.style.background = ' #ffff80'
+                mapTile[i].tileValue = 5
+                this.textContent = 'Human'
+            } else if (dropDownValue === 'goblin') {
+                this.style.background = '#bfff00'
+                mapTile[i].tileValue = 5
+                this.textContent = 'Goblin'
           }
         //    this.style.background = 'blue'
     })
