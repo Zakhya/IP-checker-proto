@@ -76,7 +76,7 @@ for (let i = 0; i < mapTile.length; i++) {
                 mapTile[i].tileValue = 5
                 this.textContent = 'Human'
             } else if (dropDownValue === 'goblin') {
-                this.style.background = '#bfff00'
+                this.style.background = '#99e600'
                 mapTile[i].tileValue = 5
                 this.textContent = 'Goblin'
           }
