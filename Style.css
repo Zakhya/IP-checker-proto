@@ -21,6 +21,18 @@ body {
     flex-grow: 1;
     text-align: center;
 }
+.flexbox-item4 {
+    flex-grow: 1;
+    display: flex;
+    background: #014705;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.playButton{
+    width: 25%;
+    height: 40%;
+}
 .ip-checker {
     text-align: center;
 }
