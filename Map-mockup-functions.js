@@ -1,6 +1,8 @@
 let gridLength = 396
 let mapTile = []
 
+let unupdateable = ['none', 'tree', 'mineral', 'water']
+
 for (let i = 0; i < gridLength ; i++) {
     mapTile[i] = document.createElement('span')
     mapTile[i].setAttribute('class', 'button number')
@@ -11,6 +13,7 @@ for (let i = 0; i < gridLength ; i++) {
     mapTile[i].rowNumber = Math.floor(i / 22) + 1
     mapTile[i].columnNumber = i % 22 + 1
     mapTile[i].ip = 0  
+    mapTile[i].activated = false
 }
 
 function playSetup (){
@@ -18,8 +21,10 @@ function playSetup (){
     for (let i = 0; i < 33 ; i++) {
         let randomID = Math.floor(Math.random() * 396)
         if(mapTile[randomID].race === 'none'){
-            mapTile[randomID].style.background = 'lightGreen'
+            mapTile[randomID].style.background = '#68ed68'
             mapTile[randomID].race = 'tree'
+            mapTile[randomID].innerHTML = '<i class="fa-solid fa-tree icon"></i>'
+            mapTile[randomID].tileValue = 3
         } else{
             i--
             continue
@@ -29,7 +34,9 @@ function playSetup (){
         let randomID = Math.floor(Math.random() * 396)
         if(mapTile[randomID].race === 'none'){
             mapTile[randomID].style.background = 'brown'
-            mapTile[randomID].race = ' mineral'
+            mapTile[randomID].race = 'mineral'
+            mapTile[randomID].innerHTML = '<i class="fa-solid fa-gem icon"></i>'
+            mapTile[randomID].tileValue = 3
         } else{
             i--
             continue
@@ -38,8 +45,10 @@ function playSetup (){
     for (let i = 0; i < 33 ; i++) {
         let randomID = Math.floor(Math.random() * 396)
         if(mapTile[randomID].race === 'none'){
-            mapTile[randomID].style.background = 'lightBlue'
+            mapTile[randomID].style.background = '#69c3e0'
             mapTile[randomID].race = 'water'
+            mapTile[randomID].innerHTML = '<i class="fa-solid fa-water icon"></i>'
+            mapTile[randomID].tileValue = 3
         } else{
             i--
             continue
@@ -110,6 +119,18 @@ for (let i = 0; i < mapTile.length; i++) {
                     const neighborIndex = (neighborRow - 1) * 22 + neighborCol - 1;
                     if (neighborIndex !== i && mapTile[neighborIndex].race === 'none') {
                         mapTile[neighborIndex].style.background = 'grey'
+                    } else if(neighborIndex !== i && mapTile[neighborIndex].race === 'ent'){
+                        mapTile[neighborIndex].style.background = '#396b39'
+                    }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'hmn'){
+                        mapTile[neighborIndex].style.background = '#c9c95f'
+                    }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'dwv'){
+                        mapTile[neighborIndex].style.background = '#6daba9'
+                    }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'tree'){
+                        mapTile[neighborIndex].style.background = '#88d188'
+                    }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'mineral'){
+                        mapTile[neighborIndex].style.background = '#704d2a'
+                    }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'water'){
+                        mapTile[neighborIndex].style.background = '#89b6c4'
                     }
                   }
                 }
@@ -118,6 +139,38 @@ for (let i = 0; i < mapTile.length; i++) {
         })
        
     mapTile[i].addEventListener('pointerleave', function  (e) {
+        if(mapTile[i].activated){
+            for (let rowOffset = -2; rowOffset <= 2; rowOffset++) {
+                for (let colOffset = -2; colOffset <= 2; colOffset++) {
+                    const neighborRow = mapTile[i].rowNumber + rowOffset;
+                  const neighborCol = mapTile[i].columnNumber + colOffset;
+                  // Check if the neighbor is within bounds
+                  if (
+                    neighborRow >= 1 &&
+                    neighborRow <= Math.ceil(gridLength / 22) &&
+                    neighborCol >= 1 &&
+                    neighborCol <= 22 
+                    ) {
+                        const neighborIndex = (neighborRow - 1) * 22 + neighborCol - 1;
+                        if (mapTile[neighborIndex].race === 'none') {
+                            mapTile[neighborIndex].style.background = 'white'
+                        } else if(neighborIndex !== i && mapTile[neighborIndex].race === 'ent'){
+                            mapTile[neighborIndex].style.background = 'green'
+                        } else if(neighborIndex !== i && mapTile[neighborIndex].race === 'hmn'){
+                            mapTile[neighborIndex].style.background = 'yellow'
+                        } else if(neighborIndex !== i && mapTile[neighborIndex].race === 'dwv'){
+                            mapTile[neighborIndex].style.background = 'mediumturquoise'
+                        }   else if(neighborIndex !== i && mapTile[neighborIndex].race === 'tree'){
+                            mapTile[neighborIndex].style.background = '#68ed68'
+                        }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'mineral'){
+                            mapTile[neighborIndex].style.background = 'brown'
+                        }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'water'){
+                            mapTile[neighborIndex].style.background = '#69c3e0'
+                        }
+                    }
+                }
+        }
+    }
         if (mapTile[i].tileValue === 1) {
         this.style.background = 'white';
         mapTile[i].tileValue = 0
@@ -136,6 +189,18 @@ for (let i = 0; i < mapTile.length; i++) {
                         const neighborIndex = (neighborRow - 1) * 22 + neighborCol - 1;
                         if (neighborIndex !== i && mapTile[neighborIndex].race === 'none') {
                             mapTile[neighborIndex].style.background = 'white'
+                        } else if(neighborIndex !== i && mapTile[neighborIndex].race === 'ent'){
+                            mapTile[neighborIndex].style.background = 'green'
+                        } else if(neighborIndex !== i && mapTile[neighborIndex].race === 'hmn'){
+                            mapTile[neighborIndex].style.background = 'yellow'
+                        } else if(neighborIndex !== i && mapTile[neighborIndex].race === 'dwv'){
+                            mapTile[neighborIndex].style.background = 'mediumturquoise'
+                        }   else if(neighborIndex !== i && mapTile[neighborIndex].race === 'tree'){
+                            mapTile[neighborIndex].style.background = '#68ed68'
+                        }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'mineral'){
+                            mapTile[neighborIndex].style.background = 'brown'
+                        }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'water'){
+                            mapTile[neighborIndex].style.background = '#69c3e0'
                         }
                       }
                     }
@@ -145,34 +210,75 @@ for (let i = 0; i < mapTile.length; i++) {
             }
         })
         mapTile[i].addEventListener('click', function (e) {
-            //change color based on dropdown menu
-            let dropDownValue = document.getElementById('building-selector').value
-           if (dropDownValue === 'ent') {
-             this.style.background = 'green'
-             this.race = 'ent'
-             
-             this.innerText = `Race:${this.race} \n IP:${this.ip}`
-             mapTile[i].tileValue = 2
-             ipCalc()
-        } else if (dropDownValue === 'human') {
-            this.style.background = 'yellow'
-            this.race = 'hmn'
+            if(mapTile[i].activated !== true){
+                mapTile.forEach((tile) => {
+                    tile.activated = false
+                })
+                mapTile[i].activated = true
+                for (let rowOffset = -2; rowOffset <= 2; rowOffset++) {
+                    for (let colOffset = -2; colOffset <= 2; colOffset++) {
+                        const neighborRow = mapTile[i].rowNumber + rowOffset;
+                      const neighborCol = mapTile[i].columnNumber + colOffset;
+                      // Check if the neighbor is within bounds
+                      if (
+                        neighborRow >= 1 &&
+                        neighborRow <= Math.ceil(gridLength / 22) &&
+                        neighborCol >= 1 &&
+                        neighborCol <= 22 
+                        ) {
+                            const neighborIndex = (neighborRow - 1) * 22 + neighborCol - 1;
+                            if (neighborIndex !== i && mapTile[neighborIndex].race === 'none') {
+                                mapTile[neighborIndex].style.background = 'grey'
+                            } else if(neighborIndex !== i && mapTile[neighborIndex].race === 'ent'){
+                                mapTile[neighborIndex].style.background = '#396b39'
+                            }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'hmn'){
+                                mapTile[neighborIndex].style.background = '#c9c95f'
+                            }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'dwv'){
+                                mapTile[neighborIndex].style.background = '#6daba9'
+                            }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'tree'){
+                                mapTile[neighborIndex].style.background = '#88d188'
+                            }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'mineral'){
+                                mapTile[neighborIndex].style.background = '#704d2a'
+                            }  else if(neighborIndex !== i && mapTile[neighborIndex].race === 'water'){
+                                mapTile[neighborIndex].style.background = '#89b6c4'
+                            }
+                        }
+                    }
+                }
+                return
+            } else {
+                if(mapTile[i].race !== 'none') return
+                let dropDownValue = document.getElementById('building-selector').value
+               if (dropDownValue === 'ent') {
+                 this.style.background = 'green'
+                 this.race = 'ent'
+                 
+                 this.innerText = `Race:${this.race} \n IP:${this.ip}`
+                 mapTile[i].tileValue = 2
+                 let tileID = mapTile[i].id
+                 ipCalc(tileID)
+            } else if (dropDownValue === 'human') {
+                this.style.background = 'yellow'
+                this.race = 'hmn'
+                
+                this.innerText = `Race:${this.race} \n IP:${this.ip}`
+                mapTile[i].tileValue = 2
+                let tileID = mapTile[i].id
+                ipCalc(tileID)
+           }  else if (dropDownValue === 'dwarve') {
+            this.style.background = 'mediumturquoise'
+            this.race = 'dwv'
             
             this.innerText = `Race:${this.race} \n IP:${this.ip}`
             mapTile[i].tileValue = 2
-            ipCalc()
-       }  else if (dropDownValue === 'dwarve') {
-        this.style.background = 'mediumturquoise'
-        this.race = 'dwv'
-        
-        this.innerText = `Race:${this.race} \n IP:${this.ip}`
-        mapTile[i].tileValue = 2
-        ipCalc()
-   }
+            let tileID = mapTile[i].id
+            ipCalc(tileID)
+            }   
+        }
     })
 }    
 
-    function ipCalc() {
+    function ipCalc(tileID) {
         for (let i = 0; i < mapTile.length; i++) {
           let ip = 0;
           let entsAround = 0
@@ -220,9 +326,9 @@ for (let i = 0; i < mapTile.length; i++) {
 
             }
           
-
+        
         mapTile[i].ip = ip;
-        if(mapTile[i].race !== 'none'){
+        if(!unupdateable.includes(mapTile[i].race)){
             mapTile[i].innerText = `Race: ${mapTile[i].race}\nIP: ${mapTile[i].ip}`;
         }
     }
