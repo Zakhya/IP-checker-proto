@@ -42,6 +42,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     flex: 0 1 100%;
+    width: 1800px;
 }
 .result{
     height: 50px;
@@ -55,10 +56,12 @@ body{
 }
 .button{
     display:flex;
-    flex: 0 1 4.5%;
+    flex: 0 1 4.545%;
     justify-content: center;
     align-items: center;
-    height: 70px;
+    height: 80px;
+    min-width: 80px;
+    min-width: 80px;
     border: 1px solid black;
     border-top:none;
     border-left:none;
@@ -68,4 +71,27 @@ body{
 }
 .icon{
     font-size: 1.5rem;
+}
+.containerDiv{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.buildButton{
+    width: 100%;
+    height: 40px;
+    background-color: green;
+    border: none;
+}
+.cancelButton{
+    width: 100%;
+    height: 39px;
+    background-color: rgb(169, 2, 2);
+    border: none;
+}
+.buildButton:hover{
+    background-color: rgb(0, 215, 0);
+}
+.cancelButton:hover{
+    background-color: red;
 }

@@ -1,6 +1,7 @@
 body {
     background: linear-gradient(270deg,  #7a7a77, #f3eae8);
     /* background-color: antiquewhite; */
+    min-width: 100%;
 }
 .flexbox-container {
     display: flex;
